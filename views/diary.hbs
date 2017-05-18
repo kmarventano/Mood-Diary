@@ -1,0 +1,96 @@
+<head>
+    <title>Diary</title>
+
+    <!-- Load jQuery and datepicker script -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<form method="post" action="/diary">
+    <!-- If user is logged in, let them add entries/view their diary -->
+    {{#if user}}
+        <h1>Feeling Wheel</h1>
+        <hr>
+        <div>
+            <img src="/img/feelingWheel.png" alt="feelings" align="middle" height="500px">
+        </div>
+        <hr>
+
+        <h1>New Entry</h1>
+        <div>
+            <h3>Date: </h3><input type="text" name="date" required id="datepicker"/>
+
+        </div>
+        <div>
+            <h3>Mood</h3>
+            <textarea name="mood" rows="2" cols="50"
+                      placeholder="How did you feel?" required></textarea>
+            <br>
+
+        </div>
+
+        <div>
+            <h3>Enviornment</h3>
+            <textarea name="enviornment" rows="2" cols="50"
+                      placeholder="Where were you?" required></textarea>
+            <br>
+        </div>
+
+        <div>
+            <h3>Behavior</h3>
+            <textarea name="behavior" rows="2" cols="50"
+                      placeholder="What were you doing?" required></textarea>
+            <br>
+        </div>
+
+        <div>
+            <h3>Entry</h3>
+            <textarea name="entry" rows="10" cols="50"
+                      placeholder="Anything else you want to say?"></textarea>
+            <br>
+        </div>
+
+        <input type="submit" value="Save Entry">
+        <hr>
+        {{#if entries}}
+            {{#each entries as |e|}}
+
+                <h3 id="{{e.date}}">{{e.date}}</h3>
+
+
+                <div>
+                    <h2>Mood: </h2> <p> {{e.mood}} </p>
+                </div>
+
+                <div>
+                    <h2>Enviornment: </h2> <p> {{e.enviornment}} </p>
+                </div>
+
+                <div>
+                    <h2>Behavior: </h2> <p> {{e.behavior}} </p>
+                </div>
+
+
+                {{#if e.entry}}
+                    <div>
+                        <h2>Entry: </h2> <p> {{e.entry}} </p>
+                    </div>
+                {{/if}}
+                <hr>
+            {{/each}}
+        {{/if}}
+        </div>
+        </div>
+        </div>
+
+    <!-- If they're not logged in, prompt them to login/register -->
+    {{else}}
+        <h1 id="diary">Diary</h1>
+        <hr>
+
+        To view your diary or make new entries,
+        <a href= "/login"> login</a> or
+        <a href= "/register"> register</a>
+    {{/if}}
+</form>

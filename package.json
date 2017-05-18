@@ -1,0 +1,34 @@
+{
+  "name": "mood-diary",
+  "version": "1.0.0",
+  "description": "Diary that users can track their moods with",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-csci-ua-0480-008-spring-2017/krm411-final-project.git"
+  },
+  "author": "Kristen Marventano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyu-csci-ua-0480-008-spring-2017/krm411-final-project/issues"
+  },
+  "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2017/krm411-final-project#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
+    "connect-flash": "^0.1.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "hbs": "^4.0.1",
+    "mongoose": "^4.9.3",
+    "mongoose-url-slugs": "^0.2.1",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
+  }
+}
