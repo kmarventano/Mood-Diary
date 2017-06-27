@@ -38,5 +38,5 @@ app.use('/', router);
 
 // Listen in on given port or 3000 if no port given
 app.listen(process.env.PORT || 3000, function(){
-    console.log('listening on', http.address().port);
+    console.log('listening on', app.address().port);
 });
