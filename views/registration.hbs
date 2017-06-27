@@ -8,6 +8,13 @@
     <h1 id="register">Register</h1>
     <hr>
 
+    {{#if error}}
+        <div class="alert alert-danger">
+            <strong>Registration Failed</strong> Username has been taken,
+            try again.
+        </div>
+    {{/if}}
+
     <div>
         <h5>
             Username:

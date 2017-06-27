@@ -37,8 +37,27 @@ router.get('/login', function(req, res) {
 });
 
 // Process the login
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/diary');
+router.post('/login',function(req, res, next) {
+    passport.authenticate('local', function(err, user, info){
+        // If the username doesn't exist or password is incorrect
+        if (err || !user) {
+            console.log(err);
+            return res.render('login', {error : "Incorrect Username " +
+            "or Password"});
+        }
+
+        // Login user
+        req.logIn(user, function(err) {
+            // If the login failed
+            if (err){
+                return res.render('login', {error : "Try again"})
+            }
+
+            // If successful, send user to their diary
+            res.redirect('/diary');
+        });
+    })(req, res, next);
+
 });
 
 // Get for registration path
@@ -60,7 +79,8 @@ router.post('/register', function(req, res) {
             // If something went wrong, log error, let user register again
             if (err) {
                 console.log(err);
-                return res.render('registration', { account : account});
+                return res.render('registration', { account : account,
+                    error : "Registration failed"});
             }
 
             // Log user in and send them to their diary
@@ -101,9 +121,10 @@ router.post('/diary', function(req, res) {
         date: req.body.date,
         mood: req.body.mood,
         behavior: req.body.behavior,
-        enviornment: req.body.enviornment,
+        environment: req.body.environment,
         entry: req.body.entry
     });
+
 
     // Add it to the diary
     diary.entries.push(e);

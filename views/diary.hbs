@@ -12,13 +12,28 @@
 <form method="post" action="/diary">
     <!-- If user is logged in, let them add entries/view their diary -->
     {{#if user}}
+        <!-- If there are entries, have links to specific dates -->
+        {{#if entries}}
+            <h1>Entries</h1>
+            <hr>
+
+            {{#each entries as |e|}}
+                <h4> <a href="#{{e.date}}">{{e.date}}</a></h4>
+            {{/each}}
+
+            <hr>
+        {{/if}}
+
+        <!-- Display feeling wheel -->
         <h1>Feeling Wheel</h1>
         <hr>
         <div>
-            <img src="/img/feelingWheel.png" alt="feelings" align="middle" height="500px">
+            <img src="/img/feelingWheel.png" alt="feelings" align="middle" width="65%">
         </div>
         <hr>
 
+
+        <!-- Input for creating new entry -->
         <h1>New Entry</h1>
         <div>
             <h3>Date: </h3><input type="text" name="date" required id="datepicker"/>
@@ -33,8 +48,8 @@
         </div>
 
         <div>
-            <h3>Enviornment</h3>
-            <textarea name="enviornment" rows="2" cols="50"
+            <h3>Environment</h3>
+            <textarea name="environment" rows="2" cols="50"
                       placeholder="Where were you?" required></textarea>
             <br>
         </div>
@@ -55,28 +70,42 @@
 
         <input type="submit" value="Save Entry">
         <hr>
+
+        <!-- Display all entries -->
         {{#if entries}}
             {{#each entries as |e|}}
-
-                <h3 id="{{e.date}}">{{e.date}}</h3>
-
-
                 <div>
-                    <h2>Mood: </h2> <p> {{e.mood}} </p>
+                    <h3 id="{{e.date}}">{{e.date}}</h3>
                 </div>
 
                 <div>
-                    <h2>Enviornment: </h2> <p> {{e.enviornment}} </p>
+                    <h4>Mood: </h4>
+                    <div style="margin-left: 3em;">
+                        {{e.mood}}
+                    </div>
                 </div>
 
                 <div>
-                    <h2>Behavior: </h2> <p> {{e.behavior}} </p>
+                    <h4>Environment: </h4>
+                    <div style="margin-left: 3em;">
+                        {{e.environment}}
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Behavior: </h4>
+                    <div style="margin-left: 3em;">
+                        {{e.behavior}}
+                    </div>
                 </div>
 
 
                 {{#if e.entry}}
                     <div>
-                        <h2>Entry: </h2> <p> {{e.entry}} </p>
+                        <h4>Entry: </h4>
+                        <div style="margin-left: 3em;">
+                            {{e.entry}}
+                        </div>
                     </div>
                 {{/if}}
                 <hr>

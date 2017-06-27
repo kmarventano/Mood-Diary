@@ -8,6 +8,12 @@
     <h1 id="login">Login</h1>
     <hr>
 
+    {{#if error}}
+        <div class="alert alert-danger">
+            <strong>Login Failed</strong> {{error}}
+        </div>
+    {{/if}}
+
     <div>
         <h5>
             Username:
