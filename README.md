@@ -4,7 +4,7 @@
 
 Mood Diaries are a common way of dealing with negative emotions. By tracking emotions along with behaviors and environment, people can learn their triggers and better ways to cope.  They can be used in conjunction with therapy to treat a variety of mental illnesses, or just to gain a better understanding of self. 
 
-Deployed with heroku, [click here] (https://guarded-coast-69837.herokuapp.com/about) to see the page.
+Deployed with heroku, [click here](https://guarded-coast-69837.herokuapp.com/about) to see the page.
 
 ## References Used
 
