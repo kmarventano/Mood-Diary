@@ -36,4 +36,22 @@ mongoose.model('Entry', Entry);
 mongoose.model('Diary', Diary);
 mongoose.model('User', User);
 
-mongoose.connect('mongodb://localhost/krm411');
+// If we're in production mode
+if (process.env.NODE_ENV === 'PRODUCTION') {
+    // Read config file
+    var fs = require('fs');
+    var path = require('path');
+    var fn = path.join(__dirname, 'config.json');
+    var data = fs.readFileSync(fn);
+
+    // File is json, parse it and set configuration
+    var conf = JSON.parse(data);
+    var dbconf = conf.dbconf;
+}
+
+// If we're not in production mode
+else {
+    dbconf = 'mongodb://localhost/krm411';
+}
+
+mongoose.connect(dbconf);
