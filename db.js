@@ -36,22 +36,21 @@ mongoose.model('Entry', Entry);
 mongoose.model('Diary', Diary);
 mongoose.model('User', User);
 
-// If we're in production mode
-if (process.env.NODE_ENV === 'PRODUCTION') {
-    // Read config file
-    var fs = require('fs');
-    var path = require('path');
-    var fn = path.join(__dirname, 'config.json');
-    var data = fs.readFileSync(fn);
 
-    // File is json, parse it and set configuration
-    var conf = JSON.parse(data);
-    var dbconf = conf.dbconf;
-}
+var urlstring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
+        process.env.MONGOLAB_CHARCOAL_URI || 'mongodb://kmarventano:password' +
+    '@ds139242.mlab.com:39242/mood-diary';
 
-// If we're not in production mode
-else {
-    dbconf = 'mongodb://localhost/krm411';
-}
 
-mongoose.connect(dbconf);
+var port = process.env.port || 5000;
+
+mongoose.connect(urlstring, function (err, res) {
+    if (err){
+        console.log("ERROR connecting to " + urlstring + "." + err);
+    }
+
+    else {
+        console.log("Connected to " + urlstring)
+    }
+
+});
