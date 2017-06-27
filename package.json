@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/nyu-csci-ua-0480-008-spring-2017/krm411-final-project/issues"
   },
+  "engines": {
+    "node": "7.4.0"
+  },
   "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2017/krm411-final-project#readme",
   "dependencies": {
     "bcrypt": "^1.0.2",

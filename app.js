@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const hbs = require("hbs");
 const path = require("path");
-const router = require("./routes/index");
+const router = require("./routes/index.js");
 
 // For authentication
 var session = require('express-session');
